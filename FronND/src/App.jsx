@@ -20,10 +20,13 @@ function App() {
   return (
     <>
       <div className="chat">
-        <h3>Unirme al Chat</h3>
+        
+        <h1>WELCOME TO GIOX CHAT</h1>
+
+        <h3>Unirme a Una Sala</h3>
         <input
           type="text"
-          placeholder="Chris..."
+          placeholder="Username:"
           onChange={(e) => setUsername(e.target.value)}
         />
         <input type="text" 
