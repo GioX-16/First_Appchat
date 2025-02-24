@@ -19,14 +19,15 @@ const io = new Server(server, {
 /* Esta parte del codigo sirve para que me indique la coneccion de un usuario */
 
 io.on("connection", (Socket) => {
-    console.log("Usuario Conectado", Socket.id)
+    console.log("Se Conecto este usuario", Socket.id)   
 
     Socket.on("join_room", (data) => {
         Socket.join(data)
+        console.log("Usuario con id: ", Socket.id, "se unio a la sala: ", data)   
     })
 
     Socket.on("disconnect", () => {
-        console.log("Usuario Desconectado", Socket.id)
+        console.log("Se Desconecto este usuario", Socket.id)
     })
 })
 

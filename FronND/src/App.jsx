@@ -3,19 +3,20 @@ import { useState } from 'react';
 import "./App.css";
 
 import io from 'socket.io-client';
+import Chat from './Chat';
 
 const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [Username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
+  const [room, setRoom] = useState("")
+
 
   const joinRoom = () => {
     if (Username !== "" && room !== "") {
-      /* AQUI EL USUARIO SE UNE A LA SALA LUEGO DE HABER PUESTO SU USUARIO Y LA SALA */
-      socket.emit("join_room", room);
+      socket.emit("join_room", room);   /* AQUI EL USUARIO SE UNE A LA SALA LUEGO DE HABER PUESTO SU USUARIO Y LA SALA */
     }
-  };
+  }
 
   return (
     <>
@@ -24,9 +25,10 @@ function App() {
         <h1>WELCOME TO GIOX CHAT</h1>
 
         <h3>Unirme a Una Sala</h3>
+
         <input
           type="text"
-          placeholder="Username:"
+          placeholder="USERNAME:"
           onChange={(e) => setUsername(e.target.value)}
         />
         <input type="text" 
@@ -34,7 +36,8 @@ function App() {
         onChange={e => setRoom(e.target.value)}
         />
 
-        <button onClick={joinRoom}>Unirme</button>
+        <button onClick={joinRoom}>Unirme A Sala</button>
+        <Chat socket={socket} username={Username} room={room} />
       </div>
     </>
   );
