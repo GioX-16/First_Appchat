@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Chat = ({socket,username,room}) => {
 
@@ -22,6 +22,12 @@ const Chat = ({socket,username,room}) => {
     }
 
 
+    useEffect(() => {
+        socket.on("receive_message", (data) => {
+            console.log(data)
+        })
+    }, [socket])
+
     return (
         <div>
             <section className="chat-header">
@@ -36,7 +42,6 @@ const Chat = ({socket,username,room}) => {
                 />
                 <button onClick={sendMessage}>Send &#9658;</button>
             </section>
-
         </div>
     )
 }
