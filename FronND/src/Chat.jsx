@@ -11,8 +11,13 @@ const Chat = ({socket,username,room}) => {
                 message: currentMessage,
                 room,
                 author:username,
-                time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
-            }
+                time: 
+                new Date(Date.now()).getHours() +
+                ":" + 
+                new Date(Date.now()).getMinutes(),
+            };
+
+            await socket.emit("send_message", info);
         }
     }
 
@@ -26,8 +31,10 @@ const Chat = ({socket,username,room}) => {
 
             </section>
             <section className="Chat-footer">
-                <input type="text" placeholder="Message..."/>
-                <button>Send &#9658;</button>
+                <input type="text" placeholder="Message..."
+                onChange={(e) => setCurrentMessage(e.target.value)}
+                />
+                <button onClick={sendMessage}>Send &#9658;</button>
             </section>
 
         </div>

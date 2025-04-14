@@ -26,6 +26,11 @@ io.on("connection", (Socket) => {
         console.log("Usuario con id: ", Socket.id, "se unio a la sala: ", data)   
     })
 
+    Socket.on("send_message", (data) => {
+        console.log('Mensaje recibido')
+        console.log(data)
+    })
+
     Socket.on("disconnect", () => {
         console.log("Se Desconecto este usuario", Socket.id)
     })
