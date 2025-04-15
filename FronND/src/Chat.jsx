@@ -22,7 +22,7 @@ const Chat = ({socket,username,room}) => {
     }
 
 
-    useEffect(() => {
+        useEffect(() => {
         socket.on("receive_message", (data) => {
             console.log(data)
         })
