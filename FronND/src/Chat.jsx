@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Icon } from "semantic-ui-react";
+import { Button, Card, Icon, Container } from "semantic-ui-react";
 
 const Chat = ({ socket, username, room }) => {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -27,8 +27,8 @@ const Chat = ({ socket, username, room }) => {
     }, [socket]);
 
     return (
-        <div className="chat">
-            <Card>
+        <Container>
+            <Card fluid>
                 <Card.Content>
                     <Card.Header>Chat in Real Time</Card.Header>
                     <Card.Content>Chats</Card.Content>
@@ -44,7 +44,7 @@ const Chat = ({ socket, username, room }) => {
                 </Card.Content>
             </Card>
 
-        </div>
+        </Container>
     );
 };
 
