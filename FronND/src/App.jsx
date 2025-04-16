@@ -52,6 +52,7 @@ function App() {
             <Icon name="user" />8 Friends
           </CardContent>
         </Card>
+
         <Chat socket={socket} username={Username} room={room} />
       </Container>
     </>
