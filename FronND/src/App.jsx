@@ -54,7 +54,7 @@ function App() {
         </Card>
 
         <Chat socket={socket} username={Username} room={room} />
-      </Container>
+    </Container>
     </>
   );
 }
