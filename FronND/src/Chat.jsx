@@ -50,10 +50,6 @@ const Chat = ({ socket, username, room }) => {
                             />
                         </Form.Field>
                     </Form>
-                    <Button primary onClick={sendMessage}>
-                        Send <Icon name='send' />
-                    </Button>
-                    <Icon name='user' /> 8 Friends
                 </CardContent>
             </Card>
         </Container>
