@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CardContent, Card, Form, Icon, Container, } from "semantic-ui-react";
+import { CardContent, Card, Form, Icon, Input, Container, } from "semantic-ui-react";
 import { FormField, Button, Checkbox, } from "semantic-ui-react";
 
 const Chat = ({ socket, username, room }) => {
@@ -34,15 +34,26 @@ const Chat = ({ socket, username, room }) => {
                 <Card.Content>Chats</Card.Content>
                 <CardContent extra>
                     <Form>
-                        <Form.Input
-                            fluid
-                            placeholder="Message..."
-                            value={currentMessage}
-                            onChange={(e) => setCurrentMessage(e.target.value)}
-                        />
-                        <Button onClick={sendMessage}>Send &#9658;</Button>
-                        <Icon name='user' /> 8 Friends
+                        <Form.Field>
+                            <Input
+                                action={{
+                                    color: 'teal',
+                                    labelPosition: 'right',
+                                    icon: 'send',
+                                    content: 'Enviar',
+                                    onClick: sendMessage
+                                }}
+                                type="text"
+                                placeholder="Message..."
+                                value={currentMessage}
+                                onChange={(e) => setCurrentMessage(e.target.value)}
+                            />
+                        </Form.Field>
                     </Form>
+                    <Button primary onClick={sendMessage}>
+                        Send <Icon name='send' />
+                    </Button>
+                    <Icon name='user' /> 8 Friends
                 </CardContent>
             </Card>
         </Container>
