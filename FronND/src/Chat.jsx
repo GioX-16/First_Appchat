@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { CardContent, Card, Icon, Container, } from "semantic-ui-react";
-import { FormField, Button, Checkbox, Form } from "semantic-ui-react";
+import { CardContent, Card, Form, Icon, Container, } from "semantic-ui-react";
+import { FormField, Button, Checkbox, } from "semantic-ui-react";
 
 const Chat = ({ socket, username, room }) => {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -28,21 +28,23 @@ const Chat = ({ socket, username, room }) => {
     }, [socket]);
 
     return (
-        <Container fluid>
-                <Card>
-                    <CardContent header='Chat in real time' />
-                    <Card.Content>Chats</Card.Content>
-                    <CardContent extra>
-                            <input
-                                type="text"
-                                placeholder="Message..."
-                                value={currentMessage}
-                                onChange={(e) => setCurrentMessage(e.target.value)}
-                            />
-                            <button onClick={sendMessage}>Send &#9658;</button>
+        <Container >
+            <Card fluid>
+                <CardContent header='Chat in real time' />
+                <Card.Content>Chats</Card.Content>
+                <CardContent extra>
+                    <Form>
+                        <Form.Input
+                            fluid
+                            placeholder="Message..."
+                            value={currentMessage}
+                            onChange={(e) => setCurrentMessage(e.target.value)}
+                        />
+                        <Button onClick={sendMessage}>Send &#9658;</Button>
                         <Icon name='user' /> 8 Friends
-                    </CardContent>
-                </Card>
+                    </Form>
+                </CardContent>
+            </Card>
         </Container>
     );
 };

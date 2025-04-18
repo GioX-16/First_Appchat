@@ -49,7 +49,7 @@ function App() {
             </Form>
           </CardContent>
           <CardContent extra>
-            <Icon name="user" />8 Friends
+          <Icon name="user" />8 Friends
           </CardContent>
         </Card>
 
