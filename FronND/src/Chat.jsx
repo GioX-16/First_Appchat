@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { CardContent, Card, Form, Icon, Input, Container, List, } from "semantic-ui-react";
-import { FormField, Button, Checkbox, } from "semantic-ui-react";
+import { CardContent, Card, Form, Icon, Input, Container, List, Divider, } from "semantic-ui-react";
+import { MessageHeader, Message, FormField, Button, Checkbox, } from "semantic-ui-react";
 
 const Chat = ({ socket, username, room }) => {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -25,7 +25,7 @@ const Chat = ({ socket, username, room }) => {
 
     useEffect(() => {
         const messageHandle = (data) => {
-                setMessagesList((list) => [...list, data]);
+            setMessagesList((list) => [...list, data]);
         }
         socket.on("receive_message", messageHandle);
 
@@ -36,9 +36,26 @@ const Chat = ({ socket, username, room }) => {
         <Container >
             <Card fluid>
                 <CardContent header={`Chat in real time | Sala: ${room}`} />
-                <Card.Content style={{minHeight:"300px"}}>
-                    {messagesList.map((item)=>{
-                        return <h3>{item.message}</h3>
+                <Card.Content style={{ minHeight: "300px" }}>
+                    {messagesList.map((item, i) => {
+                        return (
+                            <span key={i}>
+                                <Message
+                                    style={{
+                                        textAlign:
+                                            username === item.author ? 'right' : 'left',
+                                    }}
+                                    
+                                    success={username === item.author}
+                                    info={username !== item.author}
+                                    >
+
+                                    <MessageHeader>{item.message}</MessageHeader>
+                                    <p> Sent by @{item.author} at <i>{item.time}</i> </p>
+                                </Message>
+                                <Divider/>
+                            </span>
+                        );
                     })
 
                     }
