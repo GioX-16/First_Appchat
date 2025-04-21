@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-
+import "./styles.css";
 import io from "socket.io-client";
 import Chat from "./Chat";
 import { CardContent, Card, Icon, Container, Divider } from "semantic-ui-react";
@@ -21,7 +21,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className={!showChat ? "app-container" : "chat-container"}>
       <Container>
         {!showChat ? (
           <Card fluid>
@@ -29,7 +29,7 @@ function App() {
             <CardContent>
               <Form>
                 <FormField>
-                  <label>USERNAME:</label>
+                  <label style={{ color: '#fff' }}>USERNAME:</label>
                   <input
                     type="text"
                     placeholder="username"
@@ -37,7 +37,7 @@ function App() {
                   />
                 </FormField>
                 <FormField>
-                  <label>ID ROOM:</label>
+                  <label style={{ color: '#fff' }}>ID ROOM:</label>
                   <input
                     type="text"
                     placeholder="id room"
@@ -45,7 +45,7 @@ function App() {
                   />
                 </FormField>
 
-                <Button onClick={joinRoom}>Join</Button>
+                <Button onClick={joinRoom} color="teal">Join</Button>
               </Form>
             </CardContent>
             <CardContent extra>
@@ -56,7 +56,7 @@ function App() {
           <Chat socket={socket} username={Username} room={room} />
         )}
       </Container>
-    </>
+    </div>
   );
 }
 

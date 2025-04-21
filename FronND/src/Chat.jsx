@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CardContent, Card, Form, Icon, Input, Container, List, Divider, } from "semantic-ui-react";
 import { MessageHeader, Message, FormField, Button, Checkbox, } from "semantic-ui-react";
-import ScrollToBottom from 'react-scroll-to-bottom'
+import ScrollToBottom from 'react-scroll-to-bottom';
+import "./styles.css";
 
 const Chat = ({ socket, username, room }) => {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -35,7 +36,7 @@ const Chat = ({ socket, username, room }) => {
     }, [socket]);
 
     return (
-        <Container >
+        <Container>
             <Card fluid>
                 <CardContent header={`Chat in real time | Sala: ${room}`} />
                 <ScrollToBottom>
@@ -48,11 +49,9 @@ const Chat = ({ socket, username, room }) => {
                                             textAlign:
                                                 username === item.author ? 'right' : 'left',
                                         }}
-
                                         success={username === item.author}
                                         info={username !== item.author}
                                     >
-
                                         <MessageHeader>{item.message}</MessageHeader>
                                         <p> Sent by <strong>@{item.author}</strong>, at <i>{item.time}</i></p>
                                     </Message>
@@ -78,7 +77,7 @@ const Chat = ({ socket, username, room }) => {
                                     }}
                                 />
                                 <button
-                                    type='buttom' 
+                                    type='button' 
                                     onClick={() => sendMessage()}
                                     className='ui teal icon right labeled button'>
                                     <Icon name='send' /> Enviar
@@ -91,6 +90,5 @@ const Chat = ({ socket, username, room }) => {
         </Container>
     );
 };
-
 
 export default Chat;
