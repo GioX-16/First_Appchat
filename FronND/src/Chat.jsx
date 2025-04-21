@@ -45,15 +45,15 @@ const Chat = ({ socket, username, room }) => {
                                         textAlign:
                                             username === item.author ? 'right' : 'left',
                                     }}
-                                    
+
                                     success={username === item.author}
                                     info={username !== item.author}
-                                    >
+                                >
 
                                     <MessageHeader>{item.message}</MessageHeader>
-                                    <p> Sent by @{item.author} at <i>{item.time}</i> </p>
+                                    <p> Sent by <strong>@{item.author}</strong>, at <i>{item.time}</i></p>
                                 </Message>
-                                <Divider/>
+                                <Divider />
                             </span>
                         );
                     })
@@ -62,20 +62,24 @@ const Chat = ({ socket, username, room }) => {
                 </Card.Content>
                 <CardContent extra>
                     <Form>
-                        <Form.Field>
-                            <Input
-                                action={{
-                                    color: 'teal',
-                                    labelPosition: 'right',
-                                    icon: 'send',
-                                    content: 'Enviar',
-                                    onClick: sendMessage
-                                }}
-                                type="text"
-                                placeholder="Message..."
-                                value={currentMessage}
-                                onChange={(e) => setCurrentMessage(e.target.value)}
-                            />
+                        <Form.Field className="ui caction input">
+                            <div className="ui action input">
+                                <input
+
+                                    type="text"
+                                    placeholder="Message..."
+                                    /* value={currentMessage} */
+                                    onChange={(e) => setCurrentMessage(e.target.value)}
+                                    onkeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                            sendMessage()
+                                        }
+                                    }}
+                                />
+                                <button onClick={() => sendMessage()}
+                                    className='ui teal icon right labeled button'> 
+                                    <Icon name='send'/> Enviar </button>
+                            </div>
                         </Form.Field>
                     </Form>
                 </CardContent>
@@ -83,5 +87,6 @@ const Chat = ({ socket, username, room }) => {
         </Container>
     );
 };
+
 
 export default Chat;
