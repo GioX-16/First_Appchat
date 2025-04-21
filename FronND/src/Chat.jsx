@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CardContent, Card, Form, Icon, Input, Container, List, Divider, } from "semantic-ui-react";
 import { MessageHeader, Message, FormField, Button, Checkbox, } from "semantic-ui-react";
+import ScrollToBottom from 'react-scroll-to-bottom'
 
 const Chat = ({ socket, username, room }) => {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -20,6 +21,7 @@ const Chat = ({ socket, username, room }) => {
 
             await socket.emit("send_message", info);
             setMessagesList((list) => [...list, info]);
+            setCurrentMessage("")
         }
     };
 
@@ -36,49 +38,51 @@ const Chat = ({ socket, username, room }) => {
         <Container >
             <Card fluid>
                 <CardContent header={`Chat in real time | Sala: ${room}`} />
-                <Card.Content style={{ minHeight: "300px" }}>
-                    {messagesList.map((item, i) => {
-                        return (
-                            <span key={i}>
-                                <Message
-                                    style={{
-                                        textAlign:
-                                            username === item.author ? 'right' : 'left',
-                                    }}
+                <ScrollToBottom>
+                    <Card.Content style={{ height: "400px", padding: "5px" }}>
+                        {messagesList.map((item, i) => {
+                            return (
+                                <span key={i}>
+                                    <Message
+                                        style={{
+                                            textAlign:
+                                                username === item.author ? 'right' : 'left',
+                                        }}
 
-                                    success={username === item.author}
-                                    info={username !== item.author}
-                                >
+                                        success={username === item.author}
+                                        info={username !== item.author}
+                                    >
 
-                                    <MessageHeader>{item.message}</MessageHeader>
-                                    <p> Sent by <strong>@{item.author}</strong>, at <i>{item.time}</i></p>
-                                </Message>
-                                <Divider />
-                            </span>
-                        );
-                    })
-
-                    }
-                </Card.Content>
+                                        <MessageHeader>{item.message}</MessageHeader>
+                                        <p> Sent by <strong>@{item.author}</strong>, at <i>{item.time}</i></p>
+                                    </Message>
+                                    <Divider />
+                                </span>
+                            );
+                        })}
+                    </Card.Content>
+                </ScrollToBottom>
                 <CardContent extra>
                     <Form>
-                        <Form.Field className="ui caction input">
+                        <Form.Field className="ui action input">
                             <div className="ui action input">
                                 <input
-
+                                    value={currentMessage}
                                     type="text"
                                     placeholder="Message..."
-                                    /* value={currentMessage} */
                                     onChange={(e) => setCurrentMessage(e.target.value)}
-                                    onkeyPress={(e) => {
+                                    onKeyUp={(e) => {
                                         if (e.key === "Enter") {
-                                            sendMessage()
+                                            sendMessage();
                                         }
                                     }}
                                 />
-                                <button onClick={() => sendMessage()}
-                                    className='ui teal icon right labeled button'> 
-                                    <Icon name='send'/> Enviar </button>
+                                <button
+                                    type='buttom' 
+                                    onClick={() => sendMessage()}
+                                    className='ui teal icon right labeled button'>
+                                    <Icon name='send' /> Enviar
+                                </button>
                             </div>
                         </Form.Field>
                     </Form>
