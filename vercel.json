@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "FronND/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        },
+        {
+            "src": "BackND/index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.)",
+            "dest": "BackND/index.js"
+        },
+        {
+            "src": "/(.)",
+            "dest": "FronND/build/$1"
+        }
+    ]
+}
