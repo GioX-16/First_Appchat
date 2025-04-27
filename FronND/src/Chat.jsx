@@ -6,7 +6,7 @@ import "./styles.css";
 
 const Chat = ({ socket, username, room }) => {
     const [currentMessage, setCurrentMessage] = useState("");
-    const [messagesList, setMessagesList] = useState([]);
+    const [messagesList, setMessagesList] = useState([]);   
 
     const sendMessage = async () => {
         if (username && currentMessage) {

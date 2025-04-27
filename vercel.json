@@ -5,7 +5,7 @@
             "src": "FronND/package.json",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "build"
+                "distDir": "dist"
             }
         },
         {
@@ -20,7 +20,7 @@
         },
         {
             "src": "/(.)",
-            "dest": "FronND/build/$1"
+            "dest": "FronND/dist/$1"
         }
     ]
 }
