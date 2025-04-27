@@ -20,7 +20,7 @@
         },
         {
             "src": "/(.)",
-            "dest": "FronND/dist/$1"
+            "dest": "FronND/dist/index.html"
         }
     ]
 }
